@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeMapper">
+
+	<select id="list" resultType="notice">
+		select * from notice order by no desc
+	</select>
+
+	<!-- 공지사항 쿼리 고치기 -->
+	<select id="search" resultType="notice" parameterType="SearchCondition">
+		select * from notice
+		<if test="key!='none'">
+			where ${key} like concat('%', #{word} ,'%')
+		</if>
+		<if test="orderBy!='none'">
+			order by ${orderBy} ${orderByDir}
+		</if>
+		<if test="limit">
+			limit #{offset} , #{countPerPage}
+		</if>
+	</select>
+	
+	<select id="getTotalSearchCount" resultType="int" parameterType="SearchCondition">
+		select count(*) from notice
+		<if test="key!='none'">
+			where ${key} like concat('%', #{word} ,'%')
+		</if>
+	</select>
+
+</mapper>
