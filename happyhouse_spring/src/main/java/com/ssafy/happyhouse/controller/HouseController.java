@@ -2,6 +2,7 @@ package com.ssafy.happyhouse.controller;
 
 import java.util.List;
 
+import org.apache.tomcat.util.threads.StopPooledThreadException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +69,11 @@ public class HouseController {
 		try {
 			System.out.println("apt click");
 			List<HouseInfoDto> list = houseService.getAptInDong(dong);
-			for(HouseInfoDto dto:list){
-				System.out.println(dto.getAptName());
+			for( HouseInfoDto dto: list ){
+				HouseInfoDto d = houseService.getAptInfo(dto);
+				dto.setArea(d.getArea());
+				dto.setDealAmount(d.getDealAmount());
+				System.out.println(dto.toString());
 			}
 			return new ResponseEntity<List<HouseInfoDto>>(list, HttpStatus.OK);
 		} catch (Exception e) {

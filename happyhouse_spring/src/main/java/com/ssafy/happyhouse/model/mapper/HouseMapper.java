@@ -17,4 +17,6 @@ public interface HouseMapper {
 
 	List<HouseInfoDto> getAptInAptName(String aptName);
 
+	HouseInfoDto getAptInfo(HouseInfoDto houseInfoDto);
+
 }

@@ -34,5 +34,12 @@
 		from housedeal
 		where AptName = #{aptName}
 	</select>
+	
+	<select id="getAptInfo" resultType="HouseInfoDto" parameterType="HouseInfoDto">
+		select no,dong,AptName,code,dealAmount,buildYear, dealYear, dealMonth, dealDay,area, floor
+		from housedeal
+		where AptName = #{aptName} and code=#{code} and jibun=#{jibun}
+		limit 0,1;
+	</select>
 
 </mapper>

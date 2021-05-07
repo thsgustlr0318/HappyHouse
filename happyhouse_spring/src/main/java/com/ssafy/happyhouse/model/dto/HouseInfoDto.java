@@ -14,7 +14,8 @@ public class HouseInfoDto {
 	private String area;
 	private String floor;
 	private String dealYear;
-
+	private String dealAmount;
+	
 	public String getNo() {
 		return no;
 	}
@@ -109,6 +110,21 @@ public class HouseInfoDto {
 
 	public void setDealYear(String dealYear) {
 		this.dealYear = dealYear;
+	}
+
+	public String getDealAmount() {
+		return dealAmount;
+	}
+
+	public void setDealAmount(String dealAmount) {
+		this.dealAmount = dealAmount;
+	}
+
+	@Override
+	public String toString() {
+		return "HouseInfoDto [no=" + no + ", dong=" + dong + ", aptName=" + aptName + ", code=" + code + ", buildYear="
+				+ buildYear + ", jibun=" + jibun + ", lat=" + lat + ", lng=" + lng + ", img=" + img + ", area=" + area
+				+ ", floor=" + floor + ", dealYear=" + dealYear + "]";
 	}
 	
 	

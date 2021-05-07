@@ -48,4 +48,10 @@ public class HouseServiceImpl implements HouseService {
 		return sqlSession.getMapper(HouseMapper.class).getAptInAptName(aptName);
 	}
 
+	@Override
+	public HouseInfoDto getAptInfo(HouseInfoDto houseInfoDto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(HouseMapper.class).getAptInfo(houseInfoDto);
+	}
+
 }
