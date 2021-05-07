@@ -463,7 +463,8 @@
 	<!-- Required Js -->
 	
 	<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI7ZXYUQYZUXlo26vMCQtYIzTEGrbRb_c&callback=initMap"></script>
+	<script defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbAXw9l2nVgs3r-QfbDebWelD8-ySXIqA&callback=initMap"></script>
 	<script>
 		var multi = {
 			lat : 37.5665734,
@@ -580,13 +581,10 @@
             let tmpLat;
             let tmpLng;
             $.get("https://maps.googleapis.com/maps/api/geocode/json"
-                ,{  key:'AIzaSyCI7ZXYUQYZUXlo26vMCQtYIzTEGrbRb_c'
+                ,{  key:'AIzaSyBbAXw9l2nVgs3r-QfbDebWelD8-ySXIqA'
                   , address:vo.dong+"+"+vo.aptName+"+"+vo.jibun
                 }
                 , function(data, status) {
-                  console.log(vo.dong+"+"+vo.aptName+"+"+vo.jibun);
-                  console.log(data);
-                  alert(data.results[0].geometry.location.lat);
                   tmpLat = data.results[0].geometry.location.lat;
                   tmpLng = data.results[0].geometry.location.lng;
                   $("#lat_"+index).text(tmpLat);
