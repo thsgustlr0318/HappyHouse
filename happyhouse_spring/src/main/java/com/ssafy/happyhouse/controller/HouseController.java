@@ -93,4 +93,5 @@ public class HouseController {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 	}
+	
 }

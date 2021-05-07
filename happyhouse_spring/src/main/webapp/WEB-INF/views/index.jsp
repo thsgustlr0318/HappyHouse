@@ -67,23 +67,70 @@
 
 								<!-- [ statistics year chart ] start -->
 								<div class="col-xl-4 col-md-6">
-									<div class="card card-event">
-										<div class="card-block">
-											<div class="row align-items-center justify-content-center">
-												<div class="col">
-													<h5 class="m-0">코로나 확진자 수</h5>
-												</div>
-												<div class="col-auto">
-													<label class="label theme-bg2 text-white f-14 f-w-400 float-right">34%</label>
-												</div>
-											</div>
-											<h2 class="mt-3 f-w-300">
-												45<sub class="text-muted f-14">Competitors</sub>
-											</h2>
-											<h6 class="text-muted mt-4 mb-0">You can participate in event</h6>
-											<i class="fab fa-angellist text-c-purple f-50"></i>
-										</div>
-									</div>
+
+                                    <div class="card note-bar">
+                                        <div class="card-header">
+                                            <h5>공지사항</h5>
+                                            <div class="card-header-right">
+                                                <div class="btn-group card-option">
+                                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="feather icon-more-horizontal"></i>
+                                                    </button>
+                                                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                                                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                                                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
+                                                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-block p-0">
+                                            <a href="#!" class="media friendlist-box">
+                                                <div class="mr-3 photo-table">
+                                                    <i class="far fa-bell f-30"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6>우리 동네 공지사항 입니다.</h6>
+                                                    <span class="f-12 float-right text-muted">12.56</span>
+                                                    <p class="text-muted m-0">unread</p>
+                                                </div>
+                                            </a>
+                                            <a href="#!" class="media friendlist-box border-top">
+                                                <div class="mr-3 photo-table">
+                                                    <i class="far fa-bell f-30"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6>쓰레기 배출 안내입니다.</h6>
+                                                    <span class="f-12 float-right text-muted">12.36</span>
+                                                    <p class="text-muted m-0">unread</p>
+                                                </div>
+                                            </a>
+
+                                            <a href="#!" class="media friendlist-box border-top">
+                                                <div class="mr-3 photo-table">
+                                                    <i class="far fa-bell f-30"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6>우리 동네 코로나 확진자 발생!</h6>
+                                                    <span class="f-12 float-right text-muted">11.45</span>
+                                                </div>
+                                            </a>
+
+                                            <a href="#!" class="media friendlist-box border-top">
+                                                <div class="mr-3 photo-table">
+                                                    <i class="far fa-bell f-30"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6>야시장 일정</h6>
+                                                    <span class="f-12 float-right text-muted">9.39</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                <!-- [ notifications section ] end-->
 									<div class="card">
 										<div class="card-block border-bottom">
 											<div class="row d-flex align-items-center">
@@ -118,8 +165,8 @@
 								<!-- [ rating list ] end-->
 								<div class="col-xl-8 col-md-12 m-b-30">
 									<ul class="nav nav-tabs" id="myTab" role="tablist">
-										<li class="nav-item"><a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Today</a></li>
-										<li class="nav-item"><a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">This Week</a></li>
+										<li class="nav-item"><a class="nav-link active show" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Today</a></li>
+										<li class="nav-item"><a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">This Week</a></li>
 										<li class="nav-item"><a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">All</a></li>
 									</ul>
 									<div class="tab-content" id="myTabContent">
@@ -127,90 +174,30 @@
 											<table class="table table-hover">
 												<thead>
 													<tr>
-														<th>User</th>
-														<th>Activity</th>
-														<th>Time</th>
-														<th>Status</th>
-														<th class="text-right"></th>
+														<th>오늘의 뉴스</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td>
-															<h6 class="m-0">
-																<img class="rounded-circle m-r-10" style="width: 40px;" src="images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen
-															</h6>
-														</td>
-														<td>
-															<h6 class="m-0">The quick brown fox</h6>
-														</td>
-														<td>
-															<h6 class="m-0">3:28 PM</h6>
-														</td>
-														<td>
-															<h6 class="m-0 text-c-green">Done</h6>
-														</td>
-														<td class="text-right">
-															<i class="fas fa-circle text-c-green f-10"></i>
+															<a href="http://www.incheonilbo.com/news/articleView.html?idxno=1093598"><h6 class="m-0">정부 "확진자 조금씩 감소세…접종률 오르면 안정적 관리"</h6></a>
 														</td>
 													</tr>
 
 													<tr>
 														<td>
-															<h6 class="m-0">
-																<img class="rounded-circle  m-r-10" style="width: 40px;" src="images/user/avatar-2.jpg" alt="activity-user">Albert Andersen
-															</h6>
-														</td>
-														<td>
-															<h6 class="m-0">Jumps over the lazy</h6>
-														</td>
-														<td>
-															<h6 class="m-0">2:37 PM</h6>
-														</td>
-														<td>
-															<h6 class="m-0 text-c-red">Missed</h6>
-														</td>
-														<td class="text-right">
-															<i class="fas fa-circle text-c-red f-10"></i>
+															<a href="http://www.jbnews.com/news/articleView.html?idxno=1338501"><h6 class="m-0">외투자가 훑고 간 청주… 피해자는 집 없는 서민</h6></a>
 														</td>
 													</tr>
 
 													<tr>
 														<td>
-															<h6 class="m-0">
-																<img class="rounded-circle  m-r-10" style="width: 40px;" src="images/user/avatar-3.jpg" alt="activity-user">Silje Larsen
-															</h6>
-														</td>
-														<td>
-															<h6 class="m-0">Dog the quick brown</h6>
-														</td>
-														<td>
-															<h6 class="m-0">10:23 AM</h6>
-														</td>
-														<td>
-															<h6 class="m-0 text-c-purple">Delayed</h6>
-														</td>
-														<td class="text-right">
-															<i class="fas fa-circle text-c-purple f-10"></i>
+															<a href="https://www.kyongbuk.co.kr/news/articleView.html?idxno=2075832"><h6 class="m-0">취업난에 청년구직활동 '만족감' 1% 불과…'불안' 82.6%</h6></a>
 														</td>
 													</tr>
 													<tr>
 														<td>
-															<h6 class="m-0">
-																<img class="rounded-circle  m-r-10" style="width: 40px;" src="images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen
-															</h6>
-														</td>
-														<td>
-															<h6 class="m-0">The quick brown fox</h6>
-														</td>
-														<td>
-															<h6 class="m-0">4:28 PM</h6>
-														</td>
-														<td>
-															<h6 class="m-0 text-c-green">Done</h6>
-														</td>
-														<td class="text-right">
-															<i class="fas fa-circle text-c-green f-10"></i>
+															<a href="https://www.kyongbuk.co.kr/news/articleView.html?idxno=2075807"><h6 class="m-0">다가오는 여름…포항 영일대해수욕장 찾은 시민들</h6></a>
 														</td>
 													</tr>
 												</tbody>

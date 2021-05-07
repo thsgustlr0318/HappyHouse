@@ -19,7 +19,7 @@
             <ul class="navbar-nav mr-auto">
                 <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
                 <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Dropdown</a>
+                    <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">검색</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="javascript:">Action</a></li>
                         <li><a class="dropdown-item" href="javascript:">Another action</a></li>
