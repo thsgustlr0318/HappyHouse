@@ -143,7 +143,7 @@ public class QnAController {
 		}
 	}
 	
-	@ApiOperation(value = "qno에 해당하는 질문을 삭제한다.", response = List.class)
+	@ApiOperation(value = "ano에 해당하는 질문을 삭제한다.", response = List.class)
 	@DeleteMapping(value = "/answer/delete/{ano}")
 	public ResponseEntity<String> deleteAnswer(@PathVariable String ano) {
 		try {
