@@ -28,7 +28,7 @@
 		where qno=#{qno}
 	</update>
 	
-	<delete id="deleteQuestion" parameterType="question">
+	<delete id="deleteQuestion" parameterType="string">
 		delete from question
 		where qno = #{qno}
 	</delete>
@@ -57,7 +57,7 @@
 		where qno=#{qno}
 	</update>
 	
-	<delete id="deleteAnswer" parameterType="answer">
+	<delete id="deleteAnswer" parameterType="string">
 		delete from answer
 		where ano = #{ano}
 	</delete>

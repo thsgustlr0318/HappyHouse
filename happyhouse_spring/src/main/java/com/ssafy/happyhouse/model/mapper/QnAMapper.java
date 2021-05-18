@@ -15,7 +15,9 @@ public interface QnAMapper {
 
 	int modifyQuestion(Question question);
 
-	int deleteQuestion(Question question);
+	int deleteQuestion(String qno);
+	
+	List<Answer> selectAnswer(String qno);
 	
 	int updateQuestion(String qno);
 	
@@ -23,6 +25,6 @@ public interface QnAMapper {
 
 	int modifyAnswer(Answer answer);
 
-	int deleteAnswer(Answer answer);
+	int deleteAnswer(String ano);
 	
 }

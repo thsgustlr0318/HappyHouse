@@ -55,7 +55,6 @@ public class UserController {
 	public String Join(@ModelAttribute User user, Model model) {
 		try {
 			int res = userService.insert(user);
-			System.out.println(res + " " + user.getUserid());
 			if (res > 0) {
 				return "redirect:/";
 			} else {

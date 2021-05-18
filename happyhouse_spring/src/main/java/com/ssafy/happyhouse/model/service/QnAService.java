@@ -15,14 +15,16 @@ public interface QnAService {
 
 	int modifyQuestion(Question question);
 
-	int deleteQuestion(Question question);
+	int deleteQuestion(String qno);
 	
 	int updateQuestion(String qno);
+	
+	List<Answer> selectAnswer(String qno);
 	
 	int insertAnswer(Answer answer);
 
 	int modifyAnswer(Answer answer);
 
-	int deleteAnswer(Answer answer);
+	int deleteAnswer(String ano);
 	
 }

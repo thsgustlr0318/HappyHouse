@@ -46,9 +46,9 @@ public class QnAServiceImpl implements QnAService{
 	}
 
 	@Override
-	public int deleteQuestion(Question question) {
+	public int deleteQuestion(String qno) {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(QnAMapper.class).deleteQuestion(question);
+		return sqlSession.getMapper(QnAMapper.class).deleteQuestion(qno);
 	}
 
 	@Override
@@ -70,9 +70,15 @@ public class QnAServiceImpl implements QnAService{
 	}
 
 	@Override
-	public int deleteAnswer(Answer answer) {
+	public int deleteAnswer(String ano) {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(QnAMapper.class).deleteAnswer(answer);
+		return sqlSession.getMapper(QnAMapper.class).deleteAnswer(ano);
+	}
+
+	@Override
+	public List<Answer> selectAnswer(String qno) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(QnAMapper.class).selectAnswer(qno);
 	}
 
 }
