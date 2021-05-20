@@ -8,6 +8,12 @@
 		select * from notice order by no desc
 	</select>
 
+	<insert id="insertNotice" parameterType="notice">
+		<![CDATA[]]>
+		insert into notice(userid, subject, content)
+		values(#{userid},#{subject},#{content})
+	</insert>
+
 	<!-- 공지사항 쿼리 고치기 -->
 	<select id="search" resultType="notice" parameterType="SearchCondition">
 		select * from notice
@@ -21,7 +27,7 @@
 			limit #{offset} , #{countPerPage}
 		</if>
 	</select>
-	
+
 	<select id="getTotalSearchCount" resultType="int" parameterType="SearchCondition">
 		select count(*) from notice
 		<if test="key!='none'">

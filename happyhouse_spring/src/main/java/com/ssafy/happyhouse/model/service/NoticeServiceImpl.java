@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.ssafy.happyhouse.model.dto.Notice;
 import com.ssafy.happyhouse.model.dto.SearchCondition;
 import com.ssafy.happyhouse.model.mapper.NoticeMapper;
+import com.ssafy.happyhouse.model.mapper.QnAMapper;
 import com.ssafy.happyhouse.util.PageNavigation;
 
 @Service
@@ -49,6 +50,11 @@ public class NoticeServiceImpl implements NoticeService {
 		pagingResult.put("navigation", nav);
 		logger.debug("result map: {}", pagingResult);
 		return pagingResult;
+	}
+
+	@Override
+	public int insertNotice(Notice notice) {
+		return sqlSession.getMapper(NoticeMapper.class).insertNotice(notice);
 	}
 
 }
