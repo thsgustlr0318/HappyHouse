@@ -1,22 +1,20 @@
 package com.ssafy.happyhouse.controller;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.Notice;
-import com.ssafy.happyhouse.model.dto.SearchCondition;
 import com.ssafy.happyhouse.model.service.NoticeService;
 
-@Controller
+@RestController
 @RequestMapping("/notice")
 public class NoticeController {
 	
@@ -24,34 +22,45 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
-	/*
-	@GetMapping("/list")
-	public String list(Model model) {	
+	
+	@GetMapping(value = "/list")
+	public ResponseEntity<List<Notice>> getNotice() {
 		try {
 			List<Notice> list = noticeService.list();
-			model.addAttribute("notice", list);
-			return "notice/list";
+			return new ResponseEntity<List<Notice>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "공지사항 목록을 얻어오는 중 문제가 발생했습니다.");
-			return "error/error";
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 	}
-	*/
-	@GetMapping("/list")
-	public String search(Model model, @ModelAttribute SearchCondition condition) {	
-		try {
-			logger.debug("전달받은 condition: {}", condition);
-			Map<String, Object> pagingResult = noticeService.pagingSearch(condition);
-			model.addAttribute("notice", pagingResult.get("notice"));
-			model.addAttribute("navigation", pagingResult.get("navigation"));
-			return "notice/list";
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("msg", "검색 목록을 얻어오는 중 문제가 발생했습니다.");
-			return "error/error";
-		}
-	}
+	
+//	@GetMapping("/list")
+//	public String list(Model model) {	
+//		try {
+//			List<Notice> list = noticeService.list();
+//			model.addAttribute("notice", list);
+//			return "notice/list";
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			model.addAttribute("msg", "공지사항 목록을 얻어오는 중 문제가 발생했습니다.");
+//			return "error/error";
+//		}
+//	}
+	
+//	@GetMapping("/list")
+//	public String search(Model model, @ModelAttribute SearchCondition condition) {	
+//		try {
+//			logger.debug("전달받은 condition: {}", condition);
+//			Map<String, Object> pagingResult = noticeService.pagingSearch(condition);
+//			model.addAttribute("notice", pagingResult.get("notice"));
+//			model.addAttribute("navigation", pagingResult.get("navigation"));
+//			return "notice/list";
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			model.addAttribute("msg", "검색 목록을 얻어오는 중 문제가 발생했습니다.");
+//			return "error/error";
+//		}
+//	}
 	
 	
 	
