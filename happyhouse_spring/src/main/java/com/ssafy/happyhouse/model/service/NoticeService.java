@@ -11,5 +11,6 @@ public interface NoticeService {
 	List<Notice> list();
 	List<Notice> search(SearchCondition condition);
 	Map<String, Object> pagingSearch(SearchCondition condition);
+	int insertNotice(Notice notice);
 	
 }

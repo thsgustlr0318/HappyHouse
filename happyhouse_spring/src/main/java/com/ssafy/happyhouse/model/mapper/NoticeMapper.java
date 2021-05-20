@@ -12,4 +12,6 @@ public interface NoticeMapper {
 	List<Notice> search(SearchCondition condition);
 
 	int getTotalSearchCount(SearchCondition condition);
+
+	int insertNotice(Notice notice);
 }
