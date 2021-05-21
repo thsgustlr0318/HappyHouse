@@ -62,8 +62,9 @@ public class HouseController {
 		try {
 			System.out.println("dong click");
 			List<HouseInfoDto> list = houseService.getDongInGugun(gugun);
+			System.out.println(list.get(0).getAptName());
 			return new ResponseEntity<List<HouseInfoDto>>(list, HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (Exception e) {																								
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}

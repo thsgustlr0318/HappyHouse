@@ -524,6 +524,7 @@
             $.get("/map/apt"
                 ,{dong:$("#dong").val()}
                 ,function(data, status){
+                	//console.log("test "+$("#dong").val());
                   $("#searchResult").empty();
                   $("#showHouse").empty();
                   $.each(data, function(index, vo) {
