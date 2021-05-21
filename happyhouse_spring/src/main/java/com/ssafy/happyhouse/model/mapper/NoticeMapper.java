@@ -14,4 +14,8 @@ public interface NoticeMapper {
 	int getTotalSearchCount(SearchCondition condition);
 
 	int insertNotice(Notice notice);
+
+	int modifyNotice(Notice notice);
+
+	int deleteNotice(String no);
 }
