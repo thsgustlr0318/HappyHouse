@@ -55,7 +55,7 @@ public class QnAController {
 		}
 	}
 	
-	@ApiOperation(value = "질문을 추가한다.", response = List.class)
+	@ApiOperation(value = "질문을 추가한다.", response = String.class)
 	@PostMapping("/add")
 	public ResponseEntity<String> insertQuestion(@RequestBody Question question) {
 		try {
@@ -71,7 +71,7 @@ public class QnAController {
 		}
 	}
 	
-	@ApiOperation(value = "qno에 해당하는 질문을 반환한다.", response = List.class)
+	@ApiOperation(value = "qno에 해당하는 질문을 반환한다.", response = Question.class)
 	@GetMapping(value = "/{qno}")
 	public ResponseEntity<Question> select(@PathVariable String qno) {
 		try {
@@ -83,7 +83,7 @@ public class QnAController {
 		}
 	}
 	
-	@ApiOperation(value = "qno에 해당하는 질문을 수정한다.", response = List.class)
+	@ApiOperation(value = "qno에 해당하는 질문을 수정한다.", response = String.class)
 	@PutMapping(value = "/update/{qno}")
 	public ResponseEntity<String> modify(@RequestBody Question question) {
 		try {
@@ -95,7 +95,7 @@ public class QnAController {
 		}
 	}
 	
-	@ApiOperation(value = "qno에 해당하는 질문을 삭제한다.", response = List.class)
+	@ApiOperation(value = "qno에 해당하는 질문을 삭제한다.", response = String.class)
 	@DeleteMapping(value = "/delete/{qno}")
 	public ResponseEntity<String> delete(@PathVariable String qno) {
 		try {
@@ -107,7 +107,7 @@ public class QnAController {
 		}
 	}
 
-	@ApiOperation(value = "답변을 추가한다.", response = List.class)
+	@ApiOperation(value = "답변을 추가한다.", response = String.class)
 	@PostMapping("/answer/add")
 	public ResponseEntity<String> insertAnswer(@RequestBody Answer answer) {
 		try {
@@ -134,7 +134,7 @@ public class QnAController {
 		}
 	}
 	
-	@ApiOperation(value = "ano에 해당하는 질문을 수정한다.", response = List.class)
+	@ApiOperation(value = "ano에 해당하는 질문을 수정한다.", response = String.class)
 	@PutMapping(value = "/answer/update/{ano}")
 	public ResponseEntity<String> modifyAnswer(@RequestBody Answer answer) {
 		try {
@@ -146,7 +146,7 @@ public class QnAController {
 		}
 	}
 	
-	@ApiOperation(value = "ano에 해당하는 질문을 삭제한다.", response = List.class)
+	@ApiOperation(value = "ano에 해당하는 질문을 삭제한다.", response = String.class)
 	@DeleteMapping(value = "/answer/delete/{ano}")
 	public ResponseEntity<String> deleteAnswer(@PathVariable String ano) {
 		try {

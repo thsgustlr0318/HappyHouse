@@ -4,20 +4,27 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.User;
+import com.ssafy.happyhouse.model.service.JwtService;
 import com.ssafy.happyhouse.model.service.UserService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
@@ -27,28 +34,37 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
+	
+	@Autowired
+	private JwtService jwtService;
+	
 	@GetMapping("/login")
 	public String Login() {
 		return "/user/login";
 	}
 
+	@ApiOperation(value = "입력받은 아이디와 비밀번호가 유효한지 확인한 후 로그인한다.", response = String.class)
 	@PostMapping("/login")
-	public String Login(@ModelAttribute User user, HttpSession session, Model model) {
+	public ResponseEntity<String> Login(@RequestBody User user, HttpServletResponse response) {
 		try {
+			System.out.println("login "+user.getUserid());
 			User selected = userService.select(user.getUserid());
+			System.out.println("login2 "+user.getUserid()+" "+user.getUserpwd());
 			// 계정이 존재하고 비밀번호가 일치하면 로그인 성공, 그렇지 않다면 실패이다.
 			if (selected != null && user.getUserpwd().equals(selected.getUserpwd())) {
-				session.setAttribute("userinfo", selected);
-				return "redirect:/";
+
+				String token = jwtService.createToken(user.getUserid()+"", (60 * 1000 * 60));
+				response.setHeader("authorization", token);
+				MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+	            headers.add("authorization", token);
+	            System.out.println("login success");
+				return new ResponseEntity<String>(token, HttpStatus.OK);
 			} else {
-				model.addAttribute("msg", "로그인 실패");
-				return "error/error";
+				return new ResponseEntity(HttpStatus.NO_CONTENT);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
-			return "error/error";
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 	}
 

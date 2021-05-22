@@ -10,17 +10,16 @@ import com.ssafy.happyhouse.interceptor.JwtInterceptor;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-	
     private static final String[] EXCLUDE_PATHS = {
             "/user/*"
     };
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-    	/*
-        registry.addInterceptor(JwtInterceptor)
+    	
+        registry.addInterceptor(new JwtInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns(EXCLUDE_PATHS);
-        */
+        
     }
 }
