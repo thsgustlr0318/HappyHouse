@@ -79,20 +79,15 @@ public class UserController {
 		return "/user/join";
 	}
 
+	@ApiOperation(value = "입력받은 User 정보로 회원가입 한다.", response = String.class)
 	@PostMapping("/join")
-	public String Join(@ModelAttribute User user, Model model) {
+	public ResponseEntity<String> Join(@RequestBody User user) {
 		try {
-			int res = userService.insert(user);
-			if (res > 0) {
-				return "redirect:/";
-			} else {
-				model.addAttribute("msg", "로그인 실패");
-				return "error/error";
-			}
+			userService.insert(user);
+			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "회원가입 중 문제가 발생했습니다.");
-			return "error/error";
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 	}
 
