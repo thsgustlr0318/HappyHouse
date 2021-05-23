@@ -1,5 +1,10 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +18,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +59,7 @@ public class UserController {
 			// 계정이 존재하고 비밀번호가 일치하면 로그인 성공, 그렇지 않다면 실패이다.
 			if (selected != null && user.getUserpwd().equals(selected.getUserpwd())) {
 
-				String token = jwtService.createToken(user.getUserid()+"", (60 * 1000 * 60));
+				String token = jwtService.createToken(selected, (60 * 1000 * 60));
 				response.setHeader("authorization", token);
 				MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
 	            headers.add("authorization", token);
@@ -96,9 +102,24 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String MyPage(HttpSession session) {
-		return "/user/mypage";
+
+	@ApiOperation(value = "userid에 해당하는 정보를 반환한다.", response = User.class)
+	@RequestMapping(value = "/info/{userid}", method = RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> MyPage(@PathVariable String userid, @RequestBody Map<String, String> req) {
+		try {
+			User selected = userService.select(userid);
+			// 계정이 존재하고 비밀번호가 일치하면 로그인 성공, 그렇지 않다면 실패이다.
+			if (selected != null && jwtService.isUsable(req.get("auth"))) {
+				Map<String, Object> hm = new HashMap<>();
+				hm.put("user", jwtService.getSubject(req.get("auth")));
+				return new ResponseEntity<Map<String, Object>>(hm, HttpStatus.OK);
+			} else {
+				return new ResponseEntity(HttpStatus.NO_CONTENT);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
