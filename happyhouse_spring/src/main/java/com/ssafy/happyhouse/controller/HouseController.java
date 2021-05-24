@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +17,12 @@ import com.ssafy.happyhouse.model.dto.HouseInfoDto;
 import com.ssafy.happyhouse.model.dto.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.service.HouseService;
 
+import io.swagger.annotations.Api;
+
+@CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping("/map")
+@Api(value="HappyHouse MAP API")
 public class HouseController {
 	private static final Logger logger = LoggerFactory.getLogger(HouseController.class);
 
@@ -57,8 +62,9 @@ public class HouseController {
 		try {
 			System.out.println("dong click");
 			List<HouseInfoDto> list = houseService.getDongInGugun(gugun);
+			System.out.println(list.get(0).getAptName());
 			return new ResponseEntity<List<HouseInfoDto>>(list, HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (Exception e) {																								
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}

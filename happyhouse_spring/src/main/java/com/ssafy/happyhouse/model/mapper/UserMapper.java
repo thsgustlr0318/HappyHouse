@@ -10,6 +10,6 @@ public interface UserMapper {
 
 	int modify(User user);
 
-	int delete(User user);
+	int delete(String userid);
 
 }

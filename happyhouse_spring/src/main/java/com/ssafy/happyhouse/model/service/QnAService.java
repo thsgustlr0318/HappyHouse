@@ -11,6 +11,8 @@ public interface QnAService {
 	
 	Question select(String qno);
 
+	List<Question> searchById(String userid);
+	
 	int insertQuestion(Question question);
 
 	int modifyQuestion(Question question);

@@ -23,7 +23,7 @@
 		where userid=#{userid}
 	</update>
 	
-	<delete id="delete" parameterType="user">
+	<delete id="delete" parameterType="String">
 		delete from user
 		where userid = #{userid}
 	</delete>

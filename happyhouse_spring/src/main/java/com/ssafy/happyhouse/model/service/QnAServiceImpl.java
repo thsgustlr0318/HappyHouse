@@ -34,6 +34,11 @@ public class QnAServiceImpl implements QnAService{
 	}
 
 	@Override
+	public List<Question> searchById(String userid){
+		return sqlSession.getMapper(QnAMapper.class).searchById(userid);
+	}
+	
+	@Override
 	public int insertQuestion(Question question) {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(QnAMapper.class).insertQuestion(question);
