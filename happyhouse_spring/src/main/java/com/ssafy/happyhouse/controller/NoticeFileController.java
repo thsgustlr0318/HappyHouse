@@ -43,7 +43,7 @@ public class NoticeFileController {
 	public ResponseEntity<String> uploadFile(@RequestParam("files") List<MultipartFile> files, @PathVariable String no) {
 		//저장 경로 설정
 		//		String savePath = System.getProperty("user.dir") + "\\files";
-		String savePath = "C:\\Users\\thsgu\\Documents\\github\\v3\\HappyHouse_Vue\\src" + "\\assets\\files";
+		String savePath = "C:\\Users\\thsgu\\Documents\\github\\v3\\HappyHouse_Vue\\src" + "\\assets\\files\\noticefiles";
 
 		File uploadPath = new File(savePath);
 
