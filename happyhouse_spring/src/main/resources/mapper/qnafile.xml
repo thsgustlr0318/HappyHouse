@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.QnaFileMapper">
+
+	<select id="getFileList" resultType="qnafiledto" parameterType="String">
+		select *
+		from qnafile
+		where qno=#{qno}
+	</select>
+	
+	<select id="getDeleteFile" resultType="qnafiledto" parameterType="String">
+		select *
+		from qnafile
+		where fileno=#{fileno}
+	</select>
+
+	<insert id="uploadFile" parameterType="qnafiledto">
+		<![CDATA[]]>
+		insert into qnafile(qno, originalfilename, filename, filepath)
+		values(#{qno},#{originalfilename},#{filename},#{filepath})
+	</insert>
+
+	<delete id="deleteFile" parameterType="string">
+		delete from qnafile
+		where fileno = #{fileno}
+	</delete>
+
+	<select id="downloadFile" resultType="qnafiledto" parameterType="String">
+		select *
+		from qnafile
+		where fileno=#{fileno}
+	</select>
+</mapper>
