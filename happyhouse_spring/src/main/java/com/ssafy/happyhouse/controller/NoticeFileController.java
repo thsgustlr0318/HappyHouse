@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.happyhouse.model.dto.NoticeFileDto;
+import com.ssafy.happyhouse.model.dto.QnaFileDto;
 import com.ssafy.happyhouse.model.service.NoticeFileService;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
@@ -92,7 +93,18 @@ public class NoticeFileController {
 	public ResponseEntity<String> delete(@PathVariable String fileno) {
 		try {
 			System.out.println(fileno);
+			NoticeFileDto deleteFiles = noticefileService.getDeleteFile(fileno);
 			noticefileService.deleteNotice(fileno);
+
+			System.out.println(deleteFiles);
+			System.out.println(deleteFiles.getFilepath() + "\\" + deleteFiles.getFilename());
+			File deleteFile = new File(deleteFiles.getFilepath() + "\\" + deleteFiles.getFilename());
+			if (deleteFile.exists()) {
+				deleteFile.delete();
+				System.out.println("파일 삭제되었음");
+			} else {
+				System.out.println("파일 삭제 안됨");
+			}
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,16 +116,16 @@ public class NoticeFileController {
 	public ResponseEntity<NoticeFileDto> downloadFile(@PathVariable String fileno) throws IOException {
 		NoticeFileDto fileInfo = noticefileService.downloadFile(fileno);
 		return new ResponseEntity<NoticeFileDto>(fileInfo, HttpStatus.OK);
-//		File file = new File(fileInfo.getFilepath());
-//		ResponseEntity<byte[]> result = null;
-//		try {
-//			HttpHeaders header = new HttpHeaders();
-//			header.add("Content-type", Files.probeContentType(file.toPath()));
-//			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return result;
+		//		File file = new File(fileInfo.getFilepath());
+		//		ResponseEntity<byte[]> result = null;
+		//		try {
+		//			HttpHeaders header = new HttpHeaders();
+		//			header.add("Content-type", Files.probeContentType(file.toPath()));
+		//			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		//		} catch (Exception e) {
+		//			e.printStackTrace();
+		//		}
+		//		return result;
 	}
 	//	@GetMapping(value = "/downloadFile/{fileno}")
 	//	public ResponseEntity<byte[]> downloadFile(@PathVariable String fileno) throws IOException {

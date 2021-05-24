@@ -14,4 +14,6 @@ public interface NoticeFileService {
 
 	NoticeFileDto downloadFile(String fileno);
 
+	NoticeFileDto getDeleteFile(String fileno);
+
 }

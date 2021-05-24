@@ -14,4 +14,6 @@ public interface NoticeFileMapper {
 
 	NoticeFileDto downloadFile(String fileno);
 
+	NoticeFileDto getDeleteFile(String fileno);
+
 }

@@ -40,4 +40,9 @@ public class NoticeFileServiceImpl implements NoticeFileService {
 		return sqlSession.getMapper(NoticeFileMapper.class).downloadFile(fileno);
 	}
 
+	@Override
+	public NoticeFileDto getDeleteFile(String fileno) {
+		return sqlSession.getMapper(NoticeFileMapper.class).getDeleteFile(fileno);
+	}
+
 }
