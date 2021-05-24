@@ -16,6 +16,12 @@
 		]]>
 	</select>
 	
+	<select id="searchById" parameterType="string" resultType="question">
+		<![CDATA[
+			select * from question where userid=#{userid}			
+		]]>
+	</select>
+	
 	<insert id="insertQuestion" parameterType="question">
 		<![CDATA[]]>
 		insert into question(chk, userid, pwd, subject, img, content) 

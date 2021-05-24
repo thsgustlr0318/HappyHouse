@@ -55,6 +55,18 @@ public class QnAController {
 		}
 	}
 	
+	@ApiOperation(value = "userid의 Q&A의 목록을 반환한다.", response = List.class)
+	@GetMapping(value = "/question/{userid}")
+	public ResponseEntity<List<Question>> searchById(@PathVariable String userid) {
+		try {
+			List<Question> list = qnaService.searchById(userid);
+			return new ResponseEntity<List<Question>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+	}
+	
 	@ApiOperation(value = "질문을 추가한다.", response = String.class)
 	@PostMapping("/add")
 	public ResponseEntity<String> insertQuestion(@RequestBody Question question) {
