@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeFileMapper">
+	
+	<select id="getFileList" resultType="noticefiledto" parameterType="String">
+		select * 
+		from noticefile
+		where no=#{no}
+	</select>
+	
+	<insert id="uploadFile" parameterType="noticefiledto">
+		<![CDATA[]]>
+		insert into noticefile(no, originalfilename, filename, filepath)
+		values(#{no},#{originalfilename},#{filename},#{filepath})
+	</insert>
+
+	<delete id="deleteFile" parameterType="string">
+		delete from noticefile
+		where fileno = #{fileno}
+	</delete>
+	
+	<select id="downloadFile" resultType="noticefiledto" parameterType="String">
+		select * 
+		from noticefile
+		where fileno=#{fileno}
+	</select>
+</mapper>
