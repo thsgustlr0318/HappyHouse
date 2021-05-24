@@ -7,6 +7,6 @@ public interface UserService {
 	User select(String userid);
 	int insert(User user);
 	int modify(User user);
-	int delete(User attribute);
+	int delete(String userid);
 	
 }

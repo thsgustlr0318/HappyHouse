@@ -35,15 +35,15 @@ import io.swagger.annotations.ApiOperation;
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping("/user")
-@Api(value="HappyHouse USER API")
+@Api(value = "HappyHouse USER API")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private JwtService jwtService;
-	
+
 	@GetMapping("/login")
 	public String Login() {
 		return "/user/login";
@@ -53,17 +53,17 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<String> Login(@RequestBody User user, HttpServletResponse response) {
 		try {
-			System.out.println("login "+user.getUserid());
+			System.out.println("login " + user.getUserid());
 			User selected = userService.select(user.getUserid());
-			System.out.println("login2 "+user.getUserid()+" "+user.getUserpwd());
+			System.out.println("login2 " + user.getUserid() + " " + user.getUserpwd());
 			// 계정이 존재하고 비밀번호가 일치하면 로그인 성공, 그렇지 않다면 실패이다.
 			if (selected != null && user.getUserpwd().equals(selected.getUserpwd())) {
 
 				String token = jwtService.createToken(selected, (60 * 1000 * 60));
 				response.setHeader("authorization", token);
 				MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-	            headers.add("authorization", token);
-	            System.out.println("login success");
+				headers.add("authorization", token);
+				System.out.println("login success");
 				return new ResponseEntity<String>(token, HttpStatus.OK);
 			} else {
 				return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -97,10 +97,10 @@ public class UserController {
 		return "redirect:/";
 	}
 
-
-	@ApiOperation(value = "userid에 해당하는 정보를 반환한다.", response = User.class)
-	@RequestMapping(value = "/info/{userid}", method = RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> MyPage(@PathVariable String userid, @RequestBody Map<String, String> req) {
+	@ApiOperation(value = "userid에 해당하는 정보를 반환한다.", response = Map.class)
+	@RequestMapping(value = "/{userid}", method = RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> MyPage(@PathVariable String userid,
+			@RequestBody Map<String, String> req) {
 		try {
 			User selected = userService.select(userid);
 			// 계정이 존재하고 비밀번호가 일치하면 로그인 성공, 그렇지 않다면 실패이다.
@@ -116,58 +116,36 @@ public class UserController {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 	}
-	
+
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modify(HttpSession session) {
 		return "/user/modify";
 	}
 
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modify(User user, Model model, HttpSession session, HttpServletResponse response) {
-		User member = (User) session.getAttribute("userinfo");
-		if (member != null) {
-			user.setUserid(member.getUserid());
-			try {
-				userService.modify(user);
-				session.setAttribute("userinfo", userService.select(user.getUserid()));
-				return "redirect:/";
-			} catch (Exception e) {
-				e.printStackTrace();
-				model.addAttribute("msg", "회원 정보 수정 중 문제가 발생했습니다.");
-				return "error/error";
-			}
-		} else {
-			model.addAttribute("msg", "로그인 후 사용 가능한 페이지입니다.");
-			return "error/error";
-		}
-	}
-	
-	/*
-	 @RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(@RequestParam("articleno") int articleno, Model model) {
+	@ApiOperation(value = "입력받은 정보를 수정한다.", response = String.class)
+	@RequestMapping(value = "/", method = RequestMethod.PUT)
+	public ResponseEntity<String> modify(@RequestBody User user) {
 		try {
-			guestBookService.deleteArticle(articleno);
-			return "redirect:list?pg=1&key=&word=";
+			userService.modify(user);
+			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "글삭제 처리 중 문제가 발생했습니다.");
-			return "error/error";
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
+
 	}
-	 */
-	
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(User user, Model model, HttpSession session) {
+
+	@ApiOperation(value = "userid에 해당하는 정보를 삭제한다.", response = String.class)
+	@RequestMapping(value = "/{userid}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable String userid) {
 		try {
-			userService.delete((User)session.getAttribute("userinfo"));
-			session.invalidate();
-			return "redirect:/";
-		}catch (Exception e) {
+			userService.delete(userid);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "아이디 삭제 중 문제가 발생했습니다.");
-			return "error/error";
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-		
+
 	}
 
 }
