@@ -1,5 +1,6 @@
 use happyhouse;
 
+drop table `happyhouse`.`question`;
 CREATE TABLE IF NOT EXISTS `happyhouse`.`question` (
   `qno` INT NOT NULL AUTO_INCREMENT,
   `chk` VARCHAR(16) NOT NULL,
@@ -15,10 +16,11 @@ CREATE TABLE IF NOT EXISTS `happyhouse`.`question` (
   CONSTRAINT `question_userid_FK`
     FOREIGN KEY (`userid`)
     REFERENCES `happyhouse`.`user` (`userid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+drop table `happyhouse`.`answer`;
 CREATE TABLE `answer` (
   `ano` INT NOT NULL AUTO_INCREMENT,
   `qno` INT,
@@ -29,10 +31,11 @@ CREATE TABLE `answer` (
   CONSTRAINT `question_qno_FK`
     FOREIGN KEY (`qno`)
     REFERENCES `happyhouse`.`question` (`qno`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+drop table `happyhouse`.`notice`;
 CREATE TABLE IF NOT EXISTS `happyhouse`.`notice` (
   `no` INT NOT NULL AUTO_INCREMENT,
   `userid` VARCHAR(16) NOT NULL,
@@ -46,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `happyhouse`.`notice` (
   CONSTRAINT `notice_userid_FK`
     FOREIGN KEY (`userid`)
     REFERENCES `happyhouse`.`user` (`userid`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -62,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `happyhouse`.`noticefile` (
   CONSTRAINT `notice_no_FK`
     FOREIGN KEY (`no`)
     REFERENCES `happyhouse`.`notice` (`no`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -78,10 +81,13 @@ CREATE TABLE IF NOT EXISTS `happyhouse`.`qnafile` (
   CONSTRAINT `qnafile_qno_FK`
     FOREIGN KEY (`qno`)
     REFERENCES `happyhouse`.`question` (`qno`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+select * 
+from notice
+order by time desc limit 1;
 
 select * 
 from noticefile

@@ -3,6 +3,7 @@ package com.ssafy.happyhouse.model.service;
 import java.util.List;
 
 import com.ssafy.happyhouse.model.dto.Answer;
+import com.ssafy.happyhouse.model.dto.Notice;
 import com.ssafy.happyhouse.model.dto.Question;
 
 public interface QnAService {
@@ -28,5 +29,7 @@ public interface QnAService {
 	int modifyAnswer(Answer answer);
 
 	int deleteAnswer(String ano);
+
+	Question getQnaNo();
 	
 }

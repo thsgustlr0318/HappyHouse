@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.Answer;
+import com.ssafy.happyhouse.model.dto.Notice;
 import com.ssafy.happyhouse.model.dto.Question;
 import com.ssafy.happyhouse.model.dto.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.dto.User;
@@ -54,6 +55,19 @@ public class QnAController {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	@GetMapping(value = "/getQnaNo")
+	public ResponseEntity<Question> getQnaNo() {
+		try {
+			System.out.println("받아오기");
+			Question answer = qnaService.getQnaNo();
+			return new ResponseEntity<Question>(answer, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+	}
+	
 	
 	@ApiOperation(value = "userid의 Q&A의 목록을 반환한다.", response = List.class)
 	@GetMapping(value = "/question/{userid}")

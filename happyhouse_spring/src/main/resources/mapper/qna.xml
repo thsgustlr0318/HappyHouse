@@ -68,4 +68,10 @@
 		where ano = #{ano}
 	</delete>
 	
+	<select id="getQnaNo" resultType="question">
+		select * 
+		from question
+		order by time desc limit 1
+	</select>
+	
 </mapper>

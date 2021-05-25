@@ -81,7 +81,6 @@ public class NoticeFileController {
 	@GetMapping(value = "/getFileList/{no}")
 	public ResponseEntity<List<NoticeFileDto>> getFileList(@PathVariable String no) {
 		try {
-			System.out.println(no);
 			List<NoticeFileDto> answer = noticefileService.getFileList(no);
 			return new ResponseEntity<List<NoticeFileDto>>(answer, HttpStatus.OK);
 		} catch (Exception e) {

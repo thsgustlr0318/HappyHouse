@@ -28,5 +28,7 @@ public interface QnAMapper {
 	int modifyAnswer(Answer answer);
 
 	int deleteAnswer(String ano);
+
+	Question getQnaNo();
 	
 }

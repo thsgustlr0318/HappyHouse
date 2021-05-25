@@ -86,4 +86,9 @@ public class QnAServiceImpl implements QnAService{
 		return sqlSession.getMapper(QnAMapper.class).selectAnswer(qno);
 	}
 
+	@Override
+	public Question getQnaNo() {
+		return sqlSession.getMapper(QnAMapper.class).getQnaNo();
+	}
+
 }
