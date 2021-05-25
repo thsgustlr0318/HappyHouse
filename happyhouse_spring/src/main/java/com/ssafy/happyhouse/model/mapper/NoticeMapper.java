@@ -18,4 +18,6 @@ public interface NoticeMapper {
 	int modifyNotice(Notice notice);
 
 	int deleteNotice(String no);
+
+	Notice getNoticeNo();
 }

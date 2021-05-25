@@ -66,4 +66,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return sqlSession.getMapper(NoticeMapper.class).deleteNotice(no);
 	}
 
+	@Override
+	public Notice getNoticeNo() {
+		return sqlSession.getMapper(NoticeMapper.class).getNoticeNo();
+	}
+
+
 }

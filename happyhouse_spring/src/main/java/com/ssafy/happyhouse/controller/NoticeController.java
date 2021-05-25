@@ -45,6 +45,18 @@ public class NoticeController {
 		}
 	}
 	
+	@GetMapping(value = "/getNoticeNo")
+	public ResponseEntity<Notice> getNoticeNo() {
+		try {
+			System.out.println("받아오기");
+			Notice answer = noticeService.getNoticeNo();
+			return new ResponseEntity<Notice>(answer, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+	}
+	
 	@PostMapping("/add")
 	public ResponseEntity<String> insertNotice(@RequestBody Notice notice) {
 		try {

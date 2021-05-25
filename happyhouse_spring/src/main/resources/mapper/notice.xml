@@ -45,5 +45,11 @@
 		delete from notice
 		where no = #{no}
 	</delete>
+	
+	<select id="getNoticeNo" resultType="notice">
+		select * 
+		from notice
+		order by time desc limit 1
+	</select>
 
 </mapper>

@@ -15,5 +15,6 @@ public interface NoticeService {
 	int insertNotice(Notice notice);
 	int modifyNotice(Notice notice);
 	int deleteNotice(String no);
+	Notice getNoticeNo();
 	
 }

@@ -51,6 +51,7 @@ public class NoticeFileController {
 		if (uploadPath.exists() == false) {
 			uploadPath.mkdirs();
 		}
+//		System.out.println(no);
 
 		for (MultipartFile multipartfile : files) {
 			logger.info("-----------------------------------------------");
