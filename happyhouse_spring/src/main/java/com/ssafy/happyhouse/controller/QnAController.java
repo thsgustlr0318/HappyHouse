@@ -141,6 +141,8 @@ public class QnAController {
 			// userid add
 			// permission error
 			qnaService.insertAnswer(answer);
+			qnaService.updateQuestion(Integer.toString(answer.getQno()));
+//			System.out.println("답변 추가 완료");
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
